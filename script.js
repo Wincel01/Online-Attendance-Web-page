@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const studentList = document.getElementById("student-list");
     const markAbsentBtn = document.getElementById("mark-absent");
 
+    // Retrieve users from localStorage
     let users = JSON.parse(localStorage.getItem("users")) || [];
     const attendance = JSON.parse(localStorage.getItem("attendance")) || [];
 
@@ -46,12 +47,14 @@ document.addEventListener("DOMContentLoaded", () => {
         studentList.innerHTML = students.map((s) => `<option value="${s.username}">${s.username}</option>`).join("");
     }
 
+    // Login form handler
     loginSection.querySelector("form").addEventListener("submit", (e) => {
         e.preventDefault();
         const username = document.getElementById("username").value.trim();
         const password = document.getElementById("password").value.trim();
         const role = document.getElementById("role").value;
 
+        // Check if user exists
         const user = users.find((u) => u.username === username && u.password === password && u.role === role);
 
         if (user) {
@@ -61,6 +64,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
+    // Register form handler
     registerSection.querySelector("form").addEventListener("submit", (e) => {
         e.preventDefault();
         const username = document.getElementById("reg-username").value.trim();
@@ -71,6 +75,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (existingUser) {
             alert("Username already exists! Please choose a different one.");
         } else {
+            // Create new user and save to localStorage
             users.push({ username, password, role });
             localStorage.setItem("users", JSON.stringify(users));
             alert("Registration successful! You can now log in.");
@@ -78,6 +83,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
+    // Mark attendance as absent
     markAbsentBtn.addEventListener("click", () => {
         const student = studentList.value;
         const reason = document.getElementById("reason").value.trim();
@@ -91,9 +97,12 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
+    // Logout function
     function logout() {
         showLogin();
     }
 
+    // Initialize view to login screen
     showLogin();
 });
+        
