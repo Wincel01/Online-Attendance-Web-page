@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Attendance System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="login-section">
+        <h2>Login</h2>
+        <form id="login-form">
+            <input type="text" id="username" placeholder="Username" required><br>
+            <input type="password" id="password" placeholder="Password" required><br>
+            <select id="role" required>
+                <option value="teacher">Teacher</option>
+                <option value="student">Student</option>
+            </select><br>
+            <button type="submit">Login</button>
+        </form>
+        <button onclick="showRegister()">Register</button>
+    </div>
+
+    <div id="register-section" style="display:none;">
+        <h2>Register</h2>
+        <form id="register-form">
+            <input type="text" id="reg-username" placeholder="Username" required><br>
+            <input type="password" id="reg-password" placeholder="Password" required><br>
+            <select id="reg-role" required>
+                <option value="teacher">Teacher</option>
+                <option value="student">Student</option>
+            </select><br>
+            <button type="submit">Register</button>
+        </form>
+        <button onclick="showLogin()">Back to Login</button>
+    </div>
+
+    <div id="attendance-section" style="display:none;">
+        <h2>Attendance</h2>
+        <p>Welcome, <span id="user-role"></span> <span id="user-name"></span></p>
+        <div id="teacher-controls" style="display:none;">
+            <h3>Mark Attendance</h3>
+            <select id="student-list"></select><br>
+            <input type="text" id="reason" placeholder="Reason for absence" required><br>
+            <button id="mark-absent">Mark as Absent</button>
+        </div>
+        <div id="student-controls" style="display:none;">
+            <h3>Your Attendance</h3>
+            <!-- Student attendance details will go here -->
+        </div>
+        <button onclick="logout()">Logout</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
